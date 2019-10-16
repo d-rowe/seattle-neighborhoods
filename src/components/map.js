@@ -1,5 +1,6 @@
 import React from 'react';
 import * as d3 from 'd3';
+import geojson from '../geoJSON/neighborhoods.geojson';
 import './map.css';
 
 class Map extends React.Component {
@@ -27,15 +28,17 @@ class Map extends React.Component {
     var url =
       'https://opendata.arcgis.com/datasets/b76cdd45f7b54f2a96c5e97f2dda3408_2.geojson';
 
-    Promise.all([d3.json(url)]).then(data => {
-      var world = data[0];
-      world.features.forEach(f => {
+    d3.json(geojson).then(data => {
+      var world = data;
+      world.features.forEach(feature => {
         svg
           .append('path')
-          .attr('d', path(f))
+          .attr('d', path(feature))
           .attr('class', 'hood');
       });
     });
+    // Promise.all([d3.json(url)]).then(data => {
+    // });
   }
 
   render() {
