@@ -1,19 +1,17 @@
 import React from 'react';
 import * as d3 from 'd3';
-import './barChart.css';
+import './map.css';
 
-class BarChart extends React.Component {
+class Map extends React.Component {
   componentDidMount() {
-    this.width = 500;
-    this.height = 500;
     this.updateSize();
     this.drawBarChart();
   }
 
   updateSize() {
-    const boundingRect = this.refs.map.getBoundingClientRect();
-    this.width = boundingRect.width;
-    this.height = boundingRect.height;
+    const { width, height } = this.refs.map.getBoundingClientRect();
+    this.width = width;
+    this.height = height;
   }
 
   drawBarChart() {
@@ -31,14 +29,12 @@ class BarChart extends React.Component {
 
     Promise.all([d3.json(url)]).then(data => {
       var world = data[0];
-      console.log(world)
       world.features.forEach(f => {
         svg
           .append('path')
           .attr('d', path(f))
           .attr('class', 'hood');
       });
-
     });
   }
 
@@ -46,4 +42,4 @@ class BarChart extends React.Component {
     return <svg className="map" ref="map" />;
   }
 }
-export default BarChart;
+export default Map;

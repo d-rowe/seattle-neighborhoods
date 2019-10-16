@@ -1,11 +1,11 @@
 import React from 'react';
-import BarChart from './components/barChart';
+import Map from './components/map';
 
 class App extends React.Component {
   render() {
     return (
-      <div className='app'>
-        <BarChart />
+      <div className="app">
+        <Map />
       </div>
     );
   }
