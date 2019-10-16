@@ -4,6 +4,8 @@ import './barChart.css';
 
 class BarChart extends React.Component {
   componentDidMount() {
+    this.width = 500;
+    this.height = 500;
     this.updateSize();
     this.drawBarChart();
   }
@@ -26,45 +28,17 @@ class BarChart extends React.Component {
 
     var url =
       'https://opendata.arcgis.com/datasets/b76cdd45f7b54f2a96c5e97f2dda3408_2.geojson';
-    var data_url =
-      'http://enjalot.github.io/wwsd/data/world/ne_50m_populated_places_simple.geojson';
 
-    Promise.all([d3.json(url), d3.json(data_url)]).then(function(data) {
+    Promise.all([d3.json(url)]).then(data => {
       var world = data[0];
-      var places = data[1];
+      console.log(world)
+      world.features.forEach(f => {
+        svg
+          .append('path')
+          .attr('d', path(f))
+          .attr('class', 'hood');
+      });
 
-      svg
-        .append('path')
-        .attr('d', path(world))
-        .attr('fill', 'lightblue')
-        .attr('stroke', 'black');
-
-      // svg
-      //   .selectAll('circle')
-      //   .data(places.features)
-      //   .enter()
-      //   .append('circle')
-      //   .attr('r', function(d) {
-      //     return d.properties.pop_max / 1000000;
-      //   })
-      //   .attr('cx', function(d) {
-      //     return projection(d.geometry.coordinates)[0];
-      //   })
-      //   .attr('cy', function(d) {
-      //     return projection(d.geometry.coordinates)[1];
-      //   })
-      //   .attr('fill', 'darkgreen')
-      //   .attr('opacity', 0.5);
-
-      // window.setTimeout(function() {
-      //   svg
-      //     .selectAll('circle')
-      //     .transition()
-      //     .duration(5000)
-      //     .attr('r', function(d) {
-      //       return d.properties.pop_min / 1000000;
-      //     });
-      // }, 5000);
     });
   }
 
