@@ -2,7 +2,7 @@ const geojson = require('./filtered.json');
 const simplify = require('simplify-geojson');
 const fs = require('fs');
 
-const TOLERANCE = 0.0005;
+const TOLERANCE = 0.00002;
 
 var simplified = simplify(geojson, TOLERANCE);
 

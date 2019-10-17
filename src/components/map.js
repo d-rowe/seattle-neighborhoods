@@ -2,7 +2,6 @@ import React from 'react';
 import * as d3 from 'd3';
 import geojson from '../geojson/hoods.geojson';
 import Neighborhood from './neighborhood';
-import '../styles/components/map.css';
 
 class Map extends React.Component {
   state = { neighborhoods: null, viewBox: null };
