@@ -1,11 +1,11 @@
 import React from 'react';
 import * as d3 from 'd3';
-import geojson from '../geojson/neighborhoods.geojson';
+import geojson from '../geojson/hoods.geojson';
 import Neighborhood from './neighborhood';
 import '../styles/components/map.css';
 
 class Map extends React.Component {
-  state = { neighborhoods: null, viewBox: '0 0 1000 1000' };
+  state = { neighborhoods: null, viewBox: null };
 
   componentDidMount() {
     this.setHoods();
@@ -18,17 +18,17 @@ class Map extends React.Component {
     });
   }
 
-
   setHoods() {
     let projection = d3
       .geoAlbers()
       .scale(150000)
       .rotate([122.3321, 0])
-      .center([0, 47.6062])
+      .center([0, 47.6062]);
 
     let path = d3.geoPath().projection(projection);
 
-    d3.json(geojson).then(data => {  // Map features to Neighborhood components
+    d3.json(geojson).then(data => {
+      // Map features to Neighborhood components
       let neighborhoods = data.features.map((feature, i) => {
         const { L_HOOD, S_HOOD } = feature.properties;
         return (

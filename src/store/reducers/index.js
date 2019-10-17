@@ -1,6 +1,12 @@
-import { combineReducers } from 'redux';
-import hoods from './hoods';
+const initState = { hover: { name: null, broad: null } };
 
-export default combineReducers({
-  hoods
-});
+const hover = (state = initState, action) => {
+  switch (action.type) {
+    case 'SET_HOVER':
+      return { ...state, hover: action.hood };
+    default:
+      return state;
+  }
+};
+
+export default hover;

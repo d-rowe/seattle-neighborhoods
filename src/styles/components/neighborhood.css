@@ -1,15 +1,22 @@
 .neighborhood {
-  stroke: white;
+  stroke: #30110d;
   stroke-width: 1px;
-  fill: #537d91;
-  /* transition: fill 0.1s; */
+  fill: #97bc62ff;
+  transition: fill 40ms;
   cursor: pointer;
 }
 
-.neighborhood.selected {
-  fill: #f77754;
+.neighborhood:hover {
+  fill: #2c5f2d;
 }
 
-.neighborhood:hover {
-  fill: #f77754;
-}
+/* 
+  .broad-none {
+    fill: white;
+    stroke: none;
+  }
+
+  .broad-northgate {
+    fill: grey;
+    stroke: grey;
+  } */
