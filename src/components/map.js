@@ -2,7 +2,7 @@ import React from 'react';
 import * as d3 from 'd3';
 import geojson from '../geojson/neighborhoods.geojson';
 import Neighborhood from './neighborhood';
-import './map.css';
+import '../styles/components/map.css';
 
 class Map extends React.Component {
   state = { neighborhoods: null };
@@ -46,11 +46,9 @@ class Map extends React.Component {
 
   render() {
     return (
-      <div className="map">
         <svg className="mapSvg" ref="mapSvg">
           <g className="neighborhoods">{this.state.neighborhoods}</g>
         </svg>
-      </div>
     );
   }
 }

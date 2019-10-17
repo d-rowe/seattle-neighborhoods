@@ -1,15 +1,23 @@
 import React from 'react';
-import './neighborhood.css';
+import { connect } from 'react-redux';
+import { setHover } from '../store/actions';
+import '../styles/components/neighborhood.css';
 
-const Neighborhood = ({ path, name, broad }) => {
+const Neighborhood = ({ path, name, broad, setHover }) => {
   return (
     <path
       d={path}
-      className="neighborhood"
-      onClick={() => console.log(name, broad)}
-      onMouseOver={() => console.log('hover', name, broad)}
+      className={`neighborhood`}
+      onMouseOver={() => setHover({ name, broad })}
     />
   );
 };
 
-export default Neighborhood;
+const mapDispatchToProps = dispatch => ({
+  setHover: name => dispatch(setHover(name))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Neighborhood);
