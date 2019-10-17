@@ -1,7 +1,7 @@
 import json
 
 GEOJSON_PATH = './City_Clerk_Neighborhoods.geojson'
-OUTPUT_PATH = '../src/geojson/hoods.geojson'
+OUTPUT_PATH = './filtered.json'
 
 
 def main():
