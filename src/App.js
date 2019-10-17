@@ -10,7 +10,7 @@ const App = () => {
           <Map />
         </div>
         <div className="col-4">
-          <h1 align="center">Test</h1>
+          <h4 align="center">Seattle Housing Value Index</h4>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Non quam

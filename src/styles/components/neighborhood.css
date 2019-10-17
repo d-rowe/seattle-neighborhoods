@@ -1,13 +1,17 @@
 .neighborhood {
   stroke: #30110d;
   stroke-width: 1px;
-  fill: #97bc62ff;
+  /* fill: #97bc62ff; */
   transition: fill 40ms;
   cursor: pointer;
 }
 
-.neighborhood:hover {
+/* .neighborhood:hover {
   fill: #2c5f2d;
+} */
+
+.value-none {
+  opacity: 0.5;
 }
 
 /* 
