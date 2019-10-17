@@ -5,18 +5,19 @@ import Neighborhood from './neighborhood';
 import '../styles/components/map.css';
 
 class Map extends React.Component {
-  state = { neighborhoods: null };
+  state = { neighborhoods: null, viewBox: '0 0 1000 1000' };
 
   componentDidMount() {
-    this.updateSize();
     this.setHoods();
   }
 
-  updateSize() {
-    const { width, height } = this.refs.mapSvg.getBoundingClientRect();
-    this.width = width;
-    this.height = height;
+  setViewBox() {
+    const bBox = this.refs.mapSvg.getBBox();
+    this.setState({
+      viewBox: `${bBox.x} ${bBox.y} ${bBox.width} ${bBox.height}`
+    });
   }
+
 
   setHoods() {
     let projection = d3
@@ -24,11 +25,10 @@ class Map extends React.Component {
       .scale(150000)
       .rotate([122.3321, 0])
       .center([0, 47.6062])
-      .translate([this.width / 2, this.height / 2]);
 
     let path = d3.geoPath().projection(projection);
 
-    d3.json(geojson).then(data => {
+    d3.json(geojson).then(data => {  // Map features to Neighborhood components
       let neighborhoods = data.features.map((feature, i) => {
         const { L_HOOD, S_HOOD } = feature.properties;
         return (
@@ -41,14 +41,15 @@ class Map extends React.Component {
         );
       });
       this.setState({ neighborhoods });
+      this.setViewBox();
     });
   }
 
   render() {
     return (
-        <svg className="mapSvg" ref="mapSvg">
-          <g className="neighborhoods">{this.state.neighborhoods}</g>
-        </svg>
+      <svg viewBox={this.state.viewBox} className="mapSvg" ref="mapSvg">
+        <g className="neighborhoods">{this.state.neighborhoods}</g>
+      </svg>
     );
   }
 }

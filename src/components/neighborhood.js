@@ -4,11 +4,19 @@ import { setHover } from '../store/actions';
 import '../styles/components/neighborhood.css';
 
 const Neighborhood = ({ path, name, broad, setHover }) => {
+  const getBroad = term => {
+    if (term === 'NO BROADER TERM') {
+      return null;
+    } else {
+      return term;
+    }
+  };
+
   return (
     <path
       d={path}
       className={`neighborhood`}
-      onMouseOver={() => setHover({ name, broad })}
+      onMouseOver={() => setHover({ name, broad: getBroad(broad) })}
     />
   );
 };
