@@ -1,5 +1,10 @@
-export const setSelectedHood = selected => ({
+export const setSelectedHood = id => ({
   type: 'SET_SELECTED_HOOD',
-  selected
+  id,
+  timestamp: Date.now()
 });
 
+export const setQuestionIds = ids => ({
+  type: 'SET_QUESTION_IDS',
+  ids
+});

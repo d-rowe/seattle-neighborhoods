@@ -9,9 +9,10 @@
   text-align: center;
 }
 
-/* 
-.v-center {
-  display: flex;
-  align-items: center;
-  text-align: center;
-} */
+.wrong {
+  fill: red;
+}
+
+.correct {
+  fill: green;
+}

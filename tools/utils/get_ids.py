@@ -1,14 +1,13 @@
 import json
 
-GEOJSON_PATH = '../src/geojson/hoods.geojson'
-OUTPUT_PATH = '../src/geojson/hood_ids.json'
+GEOJSON_PATH = '../../src/geojson/hoods.geojson'
+OUTPUT_PATH = '../../src/geojson/hood_ids.json'
 
 
 def main():
     geojson = load_json()
 
-    s_hoods = {}
-    l_hoods = {}
+    hood_ids = []
 
     for feature in geojson['features']:
         props = feature['properties']
@@ -17,29 +16,12 @@ def main():
         s_hood = props['S_HOOD']
         l_hood = props['L_HOOD']
 
-        if hoods_id not in s_hoods.keys():
-            s_hoods[hoods_id] = s_hood
-
-        if l_hood_id not in l_hoods.keys():
-            if l_hood == 'NO BROADER TERM':
-                l_hood = 'None'
-            l_hoods[l_hood_id] = l_hood.title()
-
-    s_hoods_sorted = {}
-    for key in sorted(s_hoods.keys()):
-        s_hoods_sorted[key] = s_hoods[key]
-        # print(key , " :: " , s_hoods[key])
-    s_hoods = sort_dict(s_hoods)
-    l_hoods = sort_dict(l_hoods)
-
-    write_json({'l_hoods': l_hoods, 's_hoods': s_hoods})
-
-
-def sort_dict(dictionary):
-    sorted_dict = {}
-    for key in sorted(dictionary.keys()):
-        sorted_dict[key] = dictionary[key]
-    return sorted_dict
+        hood_ids.append({'s_hood': s_hood,
+                         'l_hood': l_hood,
+                         'hoods_id': hoods_id,
+                         'l_hood_id': l_hood_id,
+                         })
+    write_json(hood_ids)
 
 
 def load_json():

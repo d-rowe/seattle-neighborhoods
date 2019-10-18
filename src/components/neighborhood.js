@@ -1,44 +1,25 @@
 import React from 'react';
+import { createClassName } from '../utils/strings';
 import { connect } from 'react-redux';
 import { setSelectedHood } from '../store/actions';
 import '../styles/components/neighborhood.css';
 
-const Neighborhood = ({
-  path,
-  hoods_id,
-  l_hood_id,
-  s_hood,
-  l_hood,
-  setSelectedHood
-}) => {
-  const kebabCase = text => {
-    return text.replace(/\s+/g, '-').toLowerCase();
-  };
+const Neighborhood = ({ path, properties, setSelectedHood }) => {
+  const { HOODS_ID, S_HOOD, L_HOOD } = properties;
 
-  const getBroadClass = term => {
-    if (term.toLowerCase() === 'no broader term') {
-      return 'broad-none';
-    } else {
-      const broad = kebabCase(term);
-      return `broad-${broad}`;
-    }
-  };
-
-  const getNameClass = term => {
-    return `name-${kebabCase(term)}`;
-  };
-
+  const s_hood_class = createClassName('s-hood', S_HOOD);
+  const l_hood_class = createClassName('l-hood', L_HOOD);
   return (
     <path
       d={path}
-      className={`neighborhood ${getNameClass(s_hood)} ${getBroadClass(l_hood)}`}
-      onMouseDown={() => setSelectedHood({ hoods_id, l_hood_id })}
+      className={`neighborhood ${s_hood_class} ${l_hood_class}`}
+      onMouseDown={() => setSelectedHood(HOODS_ID)}
     />
   );
 };
 
 const mapDispatchToProps = dispatch => ({
-  setSelectedHood: selected => dispatch(setSelectedHood(selected))
+  setSelectedHood: id => dispatch(setSelectedHood(id))
 });
 
 export default connect(
