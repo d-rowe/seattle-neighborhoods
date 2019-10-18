@@ -29,13 +29,14 @@ class Map extends React.Component {
     d3.json(geojson).then(data => {
       // Map features to Neighborhood components
       let neighborhoods = data.features.map((feature, i) => {
-        const { L_HOOD, S_HOOD, VALUE_INDEX } = feature.properties;
+        const { L_HOODID, HOODS_ID, S_HOOD, L_HOOD } = feature.properties;
         return (
           <Neighborhood
             path={path(feature)}
-            name={S_HOOD}
-            broad={L_HOOD}
-            value_index={VALUE_INDEX}
+            hoods_id={HOODS_ID}
+            l_hood_id={L_HOODID}
+            s_hood={S_HOOD}
+            l_hood={L_HOOD}
             key={i}
           />
         );

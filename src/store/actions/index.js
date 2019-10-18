@@ -1,5 +1,5 @@
-export const setHover = hood => ({
-  type: 'SET_HOVER',
-  hood
+export const setSelectedHood = selected => ({
+  type: 'SET_SELECTED_HOOD',
+  selected
 });
 

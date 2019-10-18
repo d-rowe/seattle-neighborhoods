@@ -1,12 +1,12 @@
-const initState = { hover: { name: null, broad: null } };
+const initState = { hoods_id: null, l_hood_id: null };
 
-const hover = (state = initState, action) => {
+const selectedHood = (state = initState, action) => {
   switch (action.type) {
-    case 'SET_HOVER':
-      return { ...state, hover: action.hood };
+    case 'SET_SELECTED_HOOD':
+      return action.selected;
     default:
       return state;
   }
 };
 
-export default hover;
+export default selectedHood;
