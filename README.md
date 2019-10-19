@@ -2,4 +2,5 @@ Interactive and responsive map of Seattle's neighborhoods using D3 & React.  Dat
 
 ## TODO
 
+- [ ] Merge both industrial districts
 - [ ] Port geojson tool scripts to js

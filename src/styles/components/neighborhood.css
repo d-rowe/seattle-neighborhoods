@@ -1,21 +1,21 @@
 .neighborhood {
-  stroke: #30110d;
+  stroke: #f2f5ea;
   stroke-width: 1px;
-  fill: #97bc62ff;
+  fill: #4e6070;
   transition: fill 40ms;
   cursor: pointer;
 }
 
-.neighborhood:hover {
-  fill: #2c5f2d;
+.hovered {
+  fill: #6c859b;
 }
 
 .correct {
-  fill: green;
+  fill: #58b09c;
 }
 
 .wrong {
-  fill: red;
+  fill: #f25f5c;
 }
 
 /* 
